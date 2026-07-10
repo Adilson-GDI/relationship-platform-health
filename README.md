@@ -8,6 +8,7 @@ O projeto nasce com o FitCheck como aplicativo principal, mas a estrutura esta p
 
 ```text
 relationship-platform-health/
+├── site/         # Site institucional da HEALYH
 ├── app/          # Aplicativo Flutter principal, inicialmente FitCheck
 ├── platform/     # Backend, API e painel administrativo da plataforma
 ├── packages/     # Pacotes compartilhados futuros do framework
@@ -17,6 +18,10 @@ relationship-platform-health/
 ```
 
 ## Componentes
+
+### site
+
+Site institucional da HEALYH. Apresenta a plataforma, o FitCheck e o ecossistema de produtos de saúde e bem-estar, com acesso à plataforma administrativa Health.
 
 ### app
 
