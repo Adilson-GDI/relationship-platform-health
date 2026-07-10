@@ -21,7 +21,7 @@ class AppClientController extends Controller
         $data = $request->validate([
             'nome' => ['required', 'string', 'max:255'],
             'email' => ['nullable', 'email', 'max:255'],
-            'telefone' => ['nullable', 'string', 'max:30'],
+            'telefone' => ['required', 'string', 'max:30'],
             'profissao' => ['nullable', 'string', 'max:120'],
             'cidade' => ['nullable', 'string', 'max:120'],
             'estado' => ['nullable', 'string', 'max:2'],
@@ -204,7 +204,10 @@ class AppClientController extends Controller
         $application = $this->application($data['app_code'] ?? 'fitcheck');
 
         $professional = Professional::query()
-            ->when($data['email'] ?? null, fn ($query) => $query->where('email', $data['email']))
+            ->where(function ($query) use ($data): void {
+                $query->when($data['email'] ?? null, fn ($query, $email) => $query->where('email', $email))
+                    ->orWhere('phone', $data['telefone']);
+            })
             ->where('health_application_id', $application->id)
             ->first();
 
