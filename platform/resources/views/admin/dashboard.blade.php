@@ -54,7 +54,9 @@
                         </div>
                     </form>
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item"><a class="nav-link" href="/api/v1/apps/fitcheck/bootstrap?platform=android"><i class="fas fa-plug fa-fw"></i> API</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ url('/api/v1/apps/fitcheck/bootstrap?platform=android') }}"><i class="fas fa-plug fa-fw"></i> API</a></li>
+                        <li class="nav-item d-flex align-items-center"><span class="nav-link text-gray-600">{{ auth()->user()->name }}</span></li>
+                        <li class="nav-item d-flex align-items-center"><form method="POST" action="{{ route('logout') }}">@csrf<button type="submit" class="btn btn-link nav-link"><i class="fas fa-sign-out-alt fa-fw"></i> Sair</button></form></li>
                     </ul>
                 </nav>
 

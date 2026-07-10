@@ -6,6 +6,7 @@ use App\Models\AppVersion;
 use App\Models\FeatureFlag;
 use App\Models\HealthApplication;
 use App\Models\InAppNotice;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,6 +16,13 @@ class DatabaseSeeder extends Seeder
 
     public function run(): void
     {
+        if (app()->environment('local', 'testing')) {
+            User::updateOrCreate(
+                ['email' => 'admin@healyh.local'],
+                ['name' => 'Administrador Health', 'password' => 'password']
+            );
+        }
+
         $applications = [
             ['code' => 'fitcheck', 'name' => 'FitCheck', 'primary_color' => '#16a34a', 'secondary_color' => '#0f172a'],
             ['code' => 'physiocheck', 'name' => 'PhysioCheck', 'primary_color' => '#0284c7', 'secondary_color' => '#164e63'],
